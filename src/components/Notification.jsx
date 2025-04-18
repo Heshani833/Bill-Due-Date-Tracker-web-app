@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 
-const Notification = ({ message, show, onClose }) => {
+const Notification = ({ message, type = "success", show, onClose }) => {
   useEffect(() => {
     if (show) {
       const timer = setTimeout(() => {
         onClose();
-      }, 3000);
+      }, 5000); 
       return () => clearTimeout(timer);
     }
   }, [show, onClose]);
@@ -13,7 +13,7 @@ const Notification = ({ message, show, onClose }) => {
   if (!show) return null;
 
   return (
-    <div className="notification">
+    <div className={`notification notification-${type}`}>
       <span className="notification-message">{message}</span>
       <button className="notification-close" onClick={onClose}>
         ×
